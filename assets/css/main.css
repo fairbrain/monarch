@@ -445,8 +445,14 @@ header .online-admission {
 }
 
 .some-facts {
-    min-height: 50vh;
-    background: linear-gradient(to bottom, #fff 50%, #F7CD68 50%);
+    padding-bottom: 60px;
+    background: #F7CD68;
+    margin-top: 100px;
+}
+
+.fact-row{
+    position: relative;
+    top: -50px;
 }
 
 @media(max-width: 600px) {
@@ -455,7 +461,7 @@ header .online-admission {
     }
 }
 
-.some-facts h2 span {
+.fact-wrapper h2 span {
     color: #F7CD68;
 }
 
@@ -1403,7 +1409,7 @@ marquee span {
         height: 300px;
     }
 }
-<<<<<<< HEAD
+
 
 
 .our-departments {
@@ -1482,5 +1488,3 @@ marquee span {
     font-size: 13px;
     padding: 10px 10px;
 }
-=======
->>>>>>> a9af19ce273812e289df88dab5849badca4c68f0
