@@ -1032,59 +1032,64 @@
     crossorigin="anonymous"></script>
   <script src="./assets/js/app.js"></script>
   <script>
+    // Function to preview image
     function previewImage(input, previewId) {
       const file = input.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-          document.getElementById(previewId).src = e.target.result;
+          $(`#${previewId}`).attr('src', e.target.result);
         };
         reader.readAsDataURL(file);
       }
     }
-
-    document.getElementById('image-upload-1').addEventListener('change', function () {
-      previewImage(this, 'preview-image-upload-1');
-    });
-
-    document.getElementById('image-upload-2').addEventListener('change', function () {
-      previewImage(this, 'preview-image-upload-2');
-    });
-
-    document.getElementById('image-upload-3').addEventListener('change', function () {
-      previewImage(this, 'preview-image-upload-3');
-    });
-
-    document.getElementById('caste-select').addEventListener('change', function () {
-      const casteCertContainer = document.getElementById('caste-cert-container');
-      if (this.value === 'GENERAL') {
-        casteCertContainer.classList.add('d-none');
-      } else {
-        casteCertContainer.classList.remove('d-none');
-      }
-    });
-
-    function limitCheckboxes() {
-      const checkboxes = document.querySelectorAll('.form-check-input');
-      let checkedCount = 0;
-
-      checkboxes.forEach(checkbox => {
-        if (checkbox.checked) checkedCount++;
+  
+    // Document ready event
+    $(document).ready(function () {
+      // Image upload change events
+      $('#image-upload-1').on('change', function () {
+        previewImage(this, 'preview-image-upload-1');
       });
-
-      if (checkedCount > 1) {
-        alert("You are not allowed to select more than 1 courses.");
-        this.checked = false;
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const checkboxes = document.querySelectorAll('.form-check-input');
-      checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', limitCheckboxes);
+  
+      $('#image-upload-2').on('change', function () {
+        previewImage(this, 'preview-image-upload-2');
       });
+  
+      $('#image-upload-3').on('change', function () {
+        previewImage(this, 'preview-image-upload-3');
+      });
+  
+      // Caste select change event
+      $('#caste-select').on('change', function () {
+        const casteCertContainer = $('#caste-cert-container');
+        if ($(this).val() === 'GENERAL') {
+          casteCertContainer.addClass('d-none');
+        } else {
+          casteCertContainer.removeClass('d-none');
+        }
+      });
+  
+      // Limit checkboxes function
+      function limitCheckboxes() {
+        const checkboxes = $('.form-check-input');
+        let checkedCount = 0;
+  
+        checkboxes.each(function () {
+          if ($(this).prop('checked')) checkedCount++;
+        });
+  
+        if (checkedCount > 1) {
+          alert("You are not allowed to select more than 1 course.");
+          $(this).prop('checked', false);
+        }
+      }
+  
+      // Checkbox change events
+      const checkboxes = $('.form-check-input');
+      checkboxes.on('change', limitCheckboxes);
     });
   </script>
+  
 </body>
 
 </html>
